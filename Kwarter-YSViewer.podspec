@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
         LICENSE
   }
   s.author       = { "yashigani" => "tai.fukui@gmail.com" }
-  s.platform     = :ios, ‘6.0’
+  s.platform     = :ios, '6.0'
   s.source       = { :git => "https://github.com/kwarter/Kwarter-YSViewer", :tag => "0.3" }
   s.source_files  = 'YSViewer', 'YSViewer/*.{h,m}'
   s.requires_arc = true
