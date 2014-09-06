@@ -1,5 +1,5 @@
 Pod::Spec.new do |s|
-  s.name         = "YSViewer"
+  s.name         = "Kwarter-YSViewer"
   s.version      = "0.3"
   s.summary      = "Image viewer like Tweetbot 3."
   s.homepage     = "https://github.com/kwarter/Kwarter-YSViewer"
