@@ -80,7 +80,7 @@
         _attachBehavior = nil;
 
         CGPoint velocity = [_panGesture velocityInView:self.view];
-        velocity = CGPointMake(velocity.x / 30, velocity.y / 30);
+        velocity = CGPointMake(velocity.x / 5, velocity.y / 5);
         CGFloat magnitude = (CGFloat)sqrt(pow((double)velocity.x, 2.0) + pow((double)velocity.y, 2.0));
         if (magnitude > 30) {
             _collisionBehavior = [[UICollisionBehavior alloc] initWithItems:@[_viewer.view]];
