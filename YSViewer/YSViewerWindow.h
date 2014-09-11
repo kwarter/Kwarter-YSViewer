@@ -7,10 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "YSViewController.h"
 
 @class YSViewer;
 
 @interface YSViewerWindow : UIWindow
 @property (weak, nonatomic) YSViewer *viewer;
+@property (strong, nonatomic, readonly) YSViewController *viewController;
 
 @end

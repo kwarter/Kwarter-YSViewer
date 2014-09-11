@@ -10,7 +10,15 @@
 
 @class YSViewer;
 
+@protocol YSViewerDelegate <NSObject>
+
+@optional
+- (void)viewerWillDisappear:(YSViewer *)viewer;
+
+@end
+
 @interface YSViewController : UIViewController
 @property (weak, nonatomic) YSViewer *viewer;
+@property (weak, nonatomic) id<YSViewerDelegate> delegate;
 
 @end

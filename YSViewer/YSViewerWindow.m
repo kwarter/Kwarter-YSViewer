@@ -8,7 +8,6 @@
 
 #import "YSViewerWindow.h"
 
-#import "YSViewController.h"
 #import "YSViewer.h"
 
 @interface YSViewerWindow ()

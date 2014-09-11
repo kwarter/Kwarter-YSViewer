@@ -99,7 +99,9 @@
             [_pushBehavior setTargetOffsetFromCenter:offset forItem:_viewer.view];
             _pushBehavior.pushDirection = CGVectorMake(velocity.x, velocity.y);
             [_animator addBehavior:_pushBehavior];
-
+            
+            [self informDelegateOfDisparition];
+            
             _panGesture.enabled = NO;
         }
         else {
@@ -114,12 +116,19 @@
     }
 }
 
+- (void)informDelegateOfDisparition {
+    if (self.delegate && [self.delegate respondsToSelector:@selector(viewerWillDisappear:)]) {
+        [self.delegate viewerWillDisappear:self.viewer];
+    }
+}
+
 - (void)handleTapGesture:(id)sendr
 {
     CGPoint p = [_viewer.view convertPoint:[_tapGesture locationInView:_viewer.view]
                                     toView:self.view];
     if (!CGRectContainsPoint(_viewer.view.frame, p)) {
         [_viewer hide];
+        [self informDelegateOfDisparition];
     }
 }
 
