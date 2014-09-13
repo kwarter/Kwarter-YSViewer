@@ -8,11 +8,22 @@
 
 #import <Foundation/Foundation.h>
 
+@class YSViewer;
+
+@protocol YSViewerDelegate <NSObject>
+
+@optional
+- (void)viewerWillDisappear:(YSViewer *)viewer;
+
+@end
+
 @interface YSViewer : NSObject
 @property (nonatomic) UIImage *image;
 @property (nonatomic) UIView *view;
 @property UIView *backgroundView;
 @property (readonly) UIWindow *parentWindow;
+
+@property (nonatomic, weak) id<YSViewerDelegate> delegate;
 
 - (void)show;
 - (void)hide;

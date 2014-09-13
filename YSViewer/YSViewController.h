@@ -7,15 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@class YSViewer;
-
-@protocol YSViewerDelegate <NSObject>
-
-@optional
-- (void)viewerWillDisappear:(YSViewer *)viewer;
-
-@end
+#import "YSViewer.h"
 
 @interface YSViewController : UIViewController
 @property (weak, nonatomic) YSViewer *viewer;

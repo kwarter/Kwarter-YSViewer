@@ -117,8 +117,8 @@
 }
 
 - (void)informDelegateOfDisparition {
-    if (self.delegate && [self.delegate respondsToSelector:@selector(viewerWillDisappear:)]) {
-        [self.delegate viewerWillDisappear:self.viewer];
+    if (self.viewer.delegate && [self.viewer.delegate respondsToSelector:@selector(viewerWillDisappear:)]) {
+        [self.viewer.delegate viewerWillDisappear:self.viewer];
     }
 }
 
