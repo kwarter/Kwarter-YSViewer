@@ -10,6 +10,8 @@
 
 #import "YSViewerWindow.h"
 
+#define IS_IPAD (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+
 @interface YSViewer ()
 @property YSViewerWindow *window;
 @property UIImageView *imageView;
@@ -50,10 +52,12 @@
                                                                       name:UIWindowDidBecomeKeyNotification
                                                                     object:wself.window];
                         wself.window = nil;
-                        [UIView animateWithDuration:.25
-                                         animations:^{
-                                             wself.parentWindow.transform = CGAffineTransformIdentity;
-                                         }];
+                        if (!IS_IPAD) {
+                            [UIView animateWithDuration:.25
+                                             animations:^{
+                                                 wself.parentWindow.transform = CGAffineTransformIdentity;
+                                             }];
+                        }
                         [wself.parentWindow makeKeyAndVisible];
                         wself.view.transform = CGAffineTransformIdentity;
                     }];
@@ -91,7 +95,9 @@
                     animations:^{
                         wself.view.alpha = 1;
                         wself.view.transform = CGAffineTransformIdentity;
-                        wself.parentWindow.transform = CGAffineTransformMakeScale(.9, .9);
+                        if (!IS_IPAD) {
+                            wself.parentWindow.transform = CGAffineTransformMakeScale(.9, .9);
+                        }
                     }
                     completion:nil];
 }
