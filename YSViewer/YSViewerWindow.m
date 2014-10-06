@@ -12,6 +12,7 @@
 
 @interface YSViewerWindow ()
 @property (strong, nonatomic) YSViewController *viewController;
+@property (strong, nonatomic) UITapGestureRecognizer *tapRecognizer;
 @end
 
 @implementation YSViewerWindow
@@ -24,8 +25,13 @@
         self.windowLevel = UIWindowLevelAlert;
         self.backgroundColor = [UIColor.blackColor colorWithAlphaComponent:0.6];
         self.rootViewController = self.viewController;
+        self.tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTapOutsideViewer:)];
     }
     return self;
+}
+
+- (void)didTapOutsideViewer:(id)sender {
+    [self.viewer hide];
 }
 
 - (void)setViewer:(YSViewer *)viewer
