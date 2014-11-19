@@ -14,21 +14,25 @@
 
 @interface YSViewer ()
 @property YSViewerWindow *window;
-@property UIImageView *imageView;
 @property (readwrite) UIWindow *parentWindow;
 @end
 
 @implementation YSViewer
 @synthesize view = _view;
 
+- (instancetype)init {
+    self = [super init];
+    if (!self) {
+        return nil;
+    }
+    return  self;
+}
+
 - (void)show
 {
     if (!_window) {
         _parentWindow = UIApplication.sharedApplication.keyWindow;
         _window = [YSViewerWindow new];
-
-        _backgroundView.frame = _window.frame;
-        [_window addSubview:_backgroundView];
 
         _window.viewer = self;
 
@@ -68,8 +72,15 @@
     if (!_view) {
         _imageView = [[UIImageView alloc] initWithImage:_image];
         if (!CGRectContainsRect(_window.bounds, _imageView.bounds)) {
-            _imageView.frame = _window.bounds;
             _imageView.contentMode = UIViewContentModeScaleAspectFit;
+            
+            if (_image.size.width >= _image.size.height) {
+                _imageView.bounds = CGRectMake(0, 0, _window.bounds.size.width, (_image.size.height/_image.size.width)*_window.bounds.size.width);
+            } else {
+                _imageView.bounds = CGRectMake(0, 0, (_image.size.width/_image.size.height)*_window.bounds.size.height, _window.bounds.size.height);
+            }
+            
+            _imageView.center = _window.center;
         }
         _view = _imageView;
     }
@@ -80,6 +91,14 @@
 {
     _image = image;
     _imageView.image = _image;
+    
+    if (_image.size.width >= _image.size.height) {
+        _imageView.bounds = CGRectMake(0, 0, _window.bounds.size.width, (_image.size.height/_image.size.width)*_window.bounds.size.width);
+    } else {
+        _imageView.bounds = CGRectMake(0, 0, (_image.size.width/_image.size.height)*_window.bounds.size.height, _window.bounds.size.height);
+    }
+    
+    _imageView.center = _window.center;
 }
 
 #pragma mark - UIWindow Notifications

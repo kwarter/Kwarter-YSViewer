@@ -126,7 +126,7 @@
 {
     CGPoint p = [_viewer.view convertPoint:[_tapGesture locationInView:_viewer.view]
                                     toView:self.view];
-    if (!CGRectContainsPoint(_viewer.view.frame, p)) {
+    if (!CGRectContainsPoint(_viewer.imageView.frame, p)) {
         [_viewer hide];
         [self informDelegateOfDisparition];
     }
