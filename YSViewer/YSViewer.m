@@ -15,6 +15,7 @@
 @interface YSViewer ()
 @property YSViewerWindow *window;
 @property (readwrite) UIWindow *parentWindow;
+@property (nonatomic, strong) UIImageView *imageView;
 @end
 
 @implementation YSViewer

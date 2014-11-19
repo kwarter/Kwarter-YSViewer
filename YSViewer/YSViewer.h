@@ -22,6 +22,7 @@
 @property (nonatomic) UIView *view;
 @property UIView *backgroundView;
 @property (readonly) UIWindow *parentWindow;
+@property (nonatomic, strong, readonly) UIImageView *imageView;
 
 @property (nonatomic, weak) id<YSViewerDelegate> delegate;
 
